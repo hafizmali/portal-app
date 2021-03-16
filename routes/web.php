@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/{name}/profile-update', [App\Http\Controllers\HomeController::class, 'profileUpdate'])->name('home');
-Route::post('/{name}/profile_image_update', [App\Http\Controllers\HomeController::class, 'profileImageCrop'])->name('profileImageCrop');
+Route::post('/{name}/profile_image_update', [App\Http\Controllers\HomeController::class, 'profileImageCrops'])->name('profile_image_update');
 
 
 Route::get('{name}/recommendations', [App\Http\Controllers\HomeController::class, 'recommendations'])->name('recommendations');

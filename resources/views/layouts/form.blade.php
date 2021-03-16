@@ -51,7 +51,9 @@
     <link href="{{ asset('/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css')}}" rel="stylesheet" />
     <link href="{{ asset('/assets/plugins/bootstrap-wysihtml5/dist/bootstrap3-wysihtml5.min.css" rel="stylesheet')}}" />
     <!-- ================== END PAGE LEVEL STYLE ================== -->
-
+    <!--for cropper-->
+    <link href="{{ asset('/assets/jquery-cropper/css/cropper.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('/assets/jquery-cropper/css/main.css')}}" rel="stylesheet" />
     <!-- ================== BEGIN BASE JS ================== -->
     @if(@$playbook_page)
         <script src="{{ asset('/assets/plugins/jquery/jquery-1.10.2.min.js')}}"></script>

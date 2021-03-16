@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by   :  UbaidUllah
- * Project Name : DigitLogix
- * Product Name : PhpStorm
- * File Name    : Cropper.php
- */
+
 
 namespace App\Traits;
 
@@ -41,12 +36,13 @@ trait Cropper
     }
 
     private function setType($type) {
-       $this->imageType = $type;
+        $this->imageType = $type;
     }
     private function setFile($file, $bannerType) {
+
         $errorCode = $file[ 'error' ];
 
-        if($errorCode === UPLOAD_ERR_OK) {
+        if($errorCode === UPLOAD_ERR_OK ) {
 
             $r = getimagesize( $file[ 'tmp_name' ] );
             $type =  $r[2];
@@ -55,8 +51,9 @@ trait Cropper
                 $type =  exif_imagetype( $file[ 'tmp_name' ]);
             }
 
-            if($type) {
+            if(!empty($type)) {
                 $extension = image_type_to_extension($type);
+
                 $src       = str_replace('.', '_', time() . uniqid(30, TRUE)). $extension;
 
                 //$src = storage_path('app/'.$bannerType . '/' . $src);
@@ -70,9 +67,10 @@ trait Cropper
                         unlink($src);
                     }
 
-                    if(!folderExists(public_path('profileImage'))) {
+                   /* if(!folderExists(public_path('profileImage'))) {
+
                         createDirectory('profileImage');
-                    }
+                    }*/
 
                     $result = move_uploaded_file($file[ 'tmp_name' ], $src);
 
@@ -110,6 +108,7 @@ trait Cropper
         $file = isset($_FILES[ 'avatar_file' ]) ? $_FILES[ 'avatar_file' ] : NULL;
 
         $this->setSrc($src, $type);
+
         $this->setData($data);
         $this->setFile($file, $type);
         $this->setType($type);
@@ -140,7 +139,7 @@ trait Cropper
                 return;
             }
 
-           $size   = getimagesize($src);
+            $size   = getimagesize($src);
             $size_w = $size[ 0 ]; // natural width
             $size_h = $size[ 1 ]; // natural height
 

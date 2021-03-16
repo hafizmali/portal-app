@@ -58,12 +58,10 @@ class HomeController extends Controller
         return view('home' ,$data);
     }
 
-    public function profileImageCrop(Request $request) {
-
+    public function profileImageCrops(Request $request) {
 
         $id   = Auth::id();
-        $user = User::where('id' , $id)->first();
-
+        $user = User::find($id);
         if($request->itemId == 'public') {
 
             $data       = $this->crop('', $request);
@@ -81,6 +79,7 @@ class HomeController extends Controller
             $user->avatar = $data[ 'file_name' ];
             if($user->save()) {
                 $message = '<i class="fa fa-user fa-lg"></i>&nbsp;Profile Image has been Updated';
+
 
             }
             return $data;

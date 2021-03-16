@@ -6,9 +6,7 @@
 
 @section('create_this')
 
-    <!--for cropper-->
-    <link href="{{ asset('/assets/jquery-cropper/css/cropper.min.css')}}" rel="stylesheet"/>
-    <link href="{{ asset('/assets/jquery-cropper/css/main.css')}}" rel="stylesheet"/>
+
 @endsection
 
 @section('content')
@@ -203,6 +201,7 @@
     </script>
     <script src="{{ asset('/assets/jquery-cropper/js/cropper.min.js')}}"></script>
     <script src="{{ asset('/assets/jquery-cropper/js/main.js')}}"></script>
+
     <script>
 
         function changepass() {
