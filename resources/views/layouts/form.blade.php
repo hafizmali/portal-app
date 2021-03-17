@@ -54,7 +54,15 @@
     <!--for cropper-->
     <link href="{{ asset('/assets/jquery-cropper/css/cropper.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('/assets/jquery-cropper/css/main.css')}}" rel="stylesheet" />
+
     <!-- ================== BEGIN BASE JS ================== -->
+    <link href="{{ asset('assets/plugins/jquery-tag-it/css/jquery.tagit.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/bootstrap-wysihtml5/src/bootstrap3-wysihtml5.css')}}" rel="stylesheet" />
+
+    <link href="{{ asset('/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet"/>
+    <link href="{{ asset('/assets/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css')}}" rel="stylesheet"/>
+    <link href="{{ asset('/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css')}}" rel="stylesheet"/>
+
     @if(@$playbook_page)
         <script src="{{ asset('/assets/plugins/jquery/jquery-1.10.2.min.js')}}"></script>
     @else

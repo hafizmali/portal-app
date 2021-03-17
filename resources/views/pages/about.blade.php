@@ -28,7 +28,7 @@
 
                     <label class="control-label col-md-4">Enter About *</label>
                     <div class="col-md-8">
-                        <textarea id="" class="form-control tiny" name="about" placeholder="maximum required 1000 word.." maxlength="1000" rows="5" id="about" required>{!! @$about->about !!}</textarea>
+                        <textarea id="" class="form-control tiny" name="about" placeholder="maximum required 1000 word.." maxlength="1000" rows="5" id="about" >{!! @$about->about !!}</textarea>
 
                     </div>
                 </div>

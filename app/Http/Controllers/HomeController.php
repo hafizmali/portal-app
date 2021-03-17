@@ -174,6 +174,7 @@ class HomeController extends Controller
         $_data = [];
         $recommendation = Recommendations::get();
 
+        return $recommendation;
         if(!empty($recommendation)){
             foreach ($recommendation as $r){
                 $image = $editUrl ='';
@@ -542,6 +543,7 @@ class HomeController extends Controller
         $_data = [];
         $items = Item::with('itemDetails')->get();
 
+        return $items;
         if(!empty($items)){
             foreach ($items as $key => $r){
 

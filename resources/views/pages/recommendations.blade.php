@@ -44,33 +44,45 @@
 
 
                 <div class="panel-body">
-                    @if(!empty($_view_data))
+                        @if(!$_view_data->isEmpty())
                         <table class="table table-striped table-bordered data-table">
                             <thead>
                             <tr>
-                                <?php
-                                $_th = current($_view_data);
-                                if(!empty($_th)) {
-                                    foreach ($_th as $k => $title) {
-                                        echo '<th>' . ucfirst(str_replace('_', ' ', $k)) . '</th>';
-                                    }
-                                }
-                                ?>
+                                <th>Thumbnail</th>
+                                <th>Name</th>
+                                <th>Comment</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if(count($_view_data) > 0)
-                                @foreach($_view_data as $key => $val)
+                            @if(!empty($_view_data))
+                                @forelse($_view_data as $key => $r)
+                                    @php
+                                        $path = $editUrl = '';
+                                            $delUrl =  url(@$name.'/delete-recommendations/'.@$r->id);
+     $image = '';
+                                                            $imgU = explode('/storage/', $r->url);
+                                                            if(!empty($imgU[1])){
+                                                                  $path =    asset('storage/'.$imgU[1]);
+                                                            }
+
+                                              $image =   '<img  id="profile_photo" style="width: 45px;height: 50px;" src="'.$path.'" class="img-responsive img-rounded" alt="">';
+                                            $action = '<a onclick="myFunction()" href= "' . $delUrl . '"><i class = "fa fa-trash-o"></i> ' . @$r->name . '</a>';
+                                             // $editUrl = '<a href= "' . url($name.'/edit-recommendations/'.$r->id) . '"><i class = "fa fa-pencil"></i>'.@$r->name.'</a> |';
+                                    $action = $editUrl. '<a onclick="myFunction()" href= "' . $delUrl . '"> <i class = "fa fa-trash-o"></i> ' .@$r->name. '</a>';
+                                    @endphp
                                     <tr class="even gradeC">
-                                        @foreach($val as $key_inner => $val_inner)
-                                            <td>{!! $val_inner !!}</td>
-                                        @endforeach
+                                        <td>{!! $image !!}</td>
+                                        <td>{!! @$r->name!!}</td>
+                                        <td>{!! @$r->comment !!}</td>
+                                        <td>{!! $action !!}</td>
                                     </tr>
-                                @endforeach
-                            @else
-                                <tr class="even gradeC">
-                                    <td>No Data Found</td>
-                                </tr>
+                                @empty
+                                    <tr class="even gradeC">
+                                        <td>No Data Found</td>
+                                    </tr>
+                                @endforelse
+
                             @endif
                             </tbody>
                         </table>

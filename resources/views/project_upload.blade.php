@@ -11,13 +11,6 @@
 
 @section('create_this')
 
-    <link href="{{ asset('assets/plugins/jquery-tag-it/css/jquery.tagit.css')}}" rel="stylesheet" />
-    <link href="{{ asset('assets/plugins/bootstrap-wysihtml5/src/bootstrap3-wysihtml5.css')}}" rel="stylesheet" />
-
-    <link href="{{ asset('/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet"/>
-    <link href="{{ asset('/assets/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css')}}" rel="stylesheet"/>
-    <link href="{{ asset('/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css')}}" rel="stylesheet"/>
-
 
 
 @endsection
@@ -54,38 +47,42 @@
                     @if(!empty($_view_data))
                     <table class="table table-striped table-bordered data-table">
                         <thead>
-                        @if(!empty($_view_data))
                         <tr>
-                            <?php
-                            $_th = current($_view_data);
-                            if( !empty($_th)) {
-                                foreach( $_th as $k => $title){
-                                    echo '<th>'.ucfirst(str_replace('_', ' ', $k)).'</th>';
-                                }
-                            }
-                            ?>
+                            <th>Thumbnail</th>
+                            <th>Name</th>
+                            <th>Url</th>
+                            <th>Descriptions</th>
+                            <th>Technology</th>
+                            <th>Actions</th>
                         </tr>
-                        @endif
+
                         </thead>
                         <tbody>
-                        @if(!empty($_view_data))
-                            @foreach($_view_data as $key => $val)
+                        @if(!$_view_data->isEmpty())
+                            @forelse($_view_data as $key => $r)
+                                @php
+                                    $delUrl = url('delete-project/'.@$r->id);
+                                   $path =    asset(@$r->itemDetails[0]->filename);;
+                                    $image =     $image =   '<img  id="profile_photo" style="width: 45px;height: 50px;" src="'.$path.'" class="img-responsive img-rounded" alt="">';
+                                    $action = '<a onclick="myFunction()" href= "' . $delUrl . '"><i class = "fa fa-trash-o"></i> ' . @$r->name . '</a>'
+                                @endphp
                                 <tr class="even gradeC">
-                                    @foreach($val as $key_inner => $val_inner)
-                                        <td>{!! $val_inner !!}</td>
-                                    @endforeach
+                                    <td>{!!$image !!}</td>
+                                    <td>{!!$r->name!!}</td>
+                                    <td>{!!$r->url!!}</td>
+                                    <td>{!!$r->descriptions!!}</td>
+                                    <td>{!!$r->technology!!}</td>
+                                    <td>{!! $action !!}</td>
                                 </tr>
-                            @endforeach
-                        @else
-                            <tr class="even gradeC">
-                                <td>No Data Found</td>
-                            </tr>
+                            @empty
+                                <tr class="even gradeC">
+                                    <td>No Data Found</td>
+                                </tr>
+                            @endforelse
+
                         @endif
                         </tbody>
                     </table>
-
-                    @else
-                       <div>No Data Found</div>
                     @endif
 
                 </div>
@@ -204,9 +201,7 @@
 
 
     </div>
-    <style>
 
-    </style>
 @endsection
 
 @section('script')

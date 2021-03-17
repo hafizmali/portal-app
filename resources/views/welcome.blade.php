@@ -45,7 +45,37 @@
         gtag('config', 'UA-60241133-1');
     </script>
 
-
+    <style>
+        .headermessage {
+            margin: 19px;
+            color: black;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .image-block {
+            border: 3px solid white ;
+            background-color: black;
+            padding: 0px;
+            margin: 0px;
+            height:200px;
+            text-align: center;
+            vertical-align: bottom;
+        }
+        .image-block > p {
+            width: 100%;
+            height: 100%;
+            font-weight: normal;
+            font-size: 19px;
+            padding-top: 150px;
+            background-color: rgba(3,3,3,0.0);
+            color: rgba(6,6,6,0.0);
+        }
+        .image-block:hover > p {
+            background-color: rgba(3,3,3,0.5);
+            color: white;
+        }
+    </style>
 </head>
 
 
@@ -195,7 +225,7 @@
 
                                 @if(!empty($recommendations))
 
-                                    @foreach($recommendations as $r)
+                                    @forelse($recommendations as $r)
                                         <div class="testimonial-item">
                                             <!-- Testimonial Content -->
                                             <div class="testimonial-content">
@@ -226,30 +256,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                        @empty
+                                            <p>Not Found</p>
+                                    @endforelse
 
-                                @else
-                                    <div class="testimonial-item">
-                                        <!-- Testimonial Content -->
-                                        <div class="testimonial-content">
-                                            <div class="testimonial-text">
-                                                No Data Found
-                                            </div>
-                                        </div>
 
-                                        <div class="testimonial-credits">
-                                            <!-- Picture -->
-                                            <div class="testimonial-picture">
-
-                                                <img src="javascript:void(0)" alt="">
-                                            </div>
-                                            <!-- /Picture -->
-                                            <!-- Testimonial author information -->
-                                            <div class="testimonial-author-info">
-                                                <p class="testimonial-author"></p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endif
 
 
@@ -652,44 +663,42 @@
                         <!-- End of Portfolio filter -->
 
                         <!-- Portfolio Grid -->
-                        <div id="portfolio_grid" class="portfolio-grid portfolio-masonry masonry-grid-3 shuffle" style="position: relative; overflow: hidden; height: 741.547px; transition: height 450ms ease-out 0s;">
 
-                            <!-- Portfolio Item 1 -->
-
+                        <div class="container-fluid">
+                            <div class="row">
                             @if(!empty($items))
-                                @foreach($items as $its)
+                                @forelse($items as $its)
 
-                                    <figure class="item shuffle-item filtered" data-groups="[&quot;all&quot;, &quot;wordpress&quot;, &quot;reactjs&quot;, &quot;php&quot;]" style="position: absolute; top: 0px; left: 0px; visibility: visible; transition: transform 450ms ease-out 0s, opacity 450ms ease-out 0s;">
                                         <script>var project_details = '{!! @$its !!}';</script>
+                                    @php
 
-                               {{--       <a class="ajax-page-load" id="ajax-page-load" href="{{@$its->id}}">--}}
-                                      <a class="ajax-page-load_s" id="ajax-page-load_d" href="{{url('project-details-load/'.@$its->id)}}">
+                                        $image = '';
+                                        $image = explode('/storage/', $its->itemDetails[0]->filename);
+                                        if(!empty($image[1])){
+                                             $path =  $image[1];
+                                        }
+                                    @endphp
 
-                                            @php
 
-                                                $image = '';
-                                                $image = explode('/storage/', $its->itemDetails[0]->filename);
-                                                if(!empty($image[1])){
-                                                     $path =  $image[1];
-                                                }
-                                            @endphp
-                                            <img src="{{asset('storage/'.$path)}}" alt="">
-                                            <div style="display: none; left: -100%; top: 0px; transition: all 300ms ease 0s;">
-                                                <h5 class="name">{!! @$its->name !!}</h5>
-                                                <small>{!! @$its->descriptions !!}</small>
+                                        <a  href="{{url('project-details-load/'.@$its->id)}}">
+                                        <div class="image-block col-sm-4" style="background:url({{'storage/'.$path}}) no-repeat center top;background-size:cover;">
+                                            <p>{!! @$its->name !!}</p>
+                                            <small style="text-decoration: none;color: #9c9c9c;">{!! @$its->descriptions !!}</small>
+                                        </div>
 
-                                            </div>
+
                                         </a>
-                                    </figure>
-
-                                @endforeach
-                            @else
-                                <div> No Data Found</div>
-                        @endif
-                        <!-- /Portfolio Item 1 -->
 
 
+
+                                @empty
+                                    <div> No Data Found</div>
+                                @endforelse
+
+                            @endif
+                            </div>
                         </div>
+
                         <!-- /Portfolio Grid -->
 
                     </div>
