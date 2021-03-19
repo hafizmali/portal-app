@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Enter Contact </label>
+                            <label class="control-label col-md-4">Enter Your Skype Id: </label>
                             <div class="col-md-8">
                                 <input type="text" id="" placeholder="E.g. yourname@skype.com" value="{!! @$adminProfile->content_id !!}"
                                        name="content_id" class="form-control">
