@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Please follwing setup to intergrate the projects
+## Please following these steps to intergrate this project.
 - ** 1.Rename your .env-example to .env
 - ** 2.Set your database credential
 - ** 3.Need to  run composer update command in terminal of root directory 
