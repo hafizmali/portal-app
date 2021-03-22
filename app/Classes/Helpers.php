@@ -915,12 +915,11 @@ function protocolType() {
 }
 
 // service type version 4.2.3
-function statusActivity() {
+function workAtTechnology() {
     return array(
-        1 => 'Online',
-        2 => 'Drain',
-        3 => 'Offline',
-        4 => 'Standby',
+        0  => 'Fullstack',
+        1  => 'Wordpress',
+        2  => 'Shopify',
 
     );
 }

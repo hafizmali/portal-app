@@ -181,6 +181,19 @@
                         </div>
 
                         <div class="form-group">
+                            @php
+                            $technology = workAtTechnology();
+                            @endphp
+                            <label class="control-label col-md-4">Select Types:</label>
+                            <div class="col-md-8">
+                            <select name="type" id="" class="form-control">
+                                @foreach($technology as $key => $t)
+                                <option value="{!! $key !!}">{!! $t !!}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-4">Product photos (can attach more than one): </label>
                             <div class="col-md-8">
                                 <input type="file" class="form-control" name="photos[]" multiple />

@@ -539,9 +539,9 @@ class HomeController extends Controller
         }
         return \redirect()->back();
     }*/
-    public function getUploadProject() {
+    public function getUploadProject($type_id = null) {
         $_data = [];
-        $items = Item::with('itemDetails')->get();
+        $items = Item::where('type' ,$type_id)->with('itemDetails')->get();
 
         return $items;
         if(!empty($items)){
@@ -570,7 +570,7 @@ class HomeController extends Controller
     }
     public function uploadProjectForm() {
 
-        $items = $this->getUploadProject();
+        $items = $this->getUploadProject(0);
 
         $data[ 'name' ]               = \Auth::User()->name;
         $data[ 'adminProfile' ]       = User::where('id', \Auth::User()->id)->first();
@@ -581,6 +581,12 @@ class HomeController extends Controller
         $data[ 'active_tab_1' ]       = 'multi_project';
         $data[ '_view_data' ]         = $items;
         return view('project_upload', $data);
+    }
+
+    public function uploadProjectJson(Request  $request) {
+
+        $res = $this->getUploadProject($request->type_id);
+        return $res;
     }
 
     public function uploadProjectSubmit(Request $request) {

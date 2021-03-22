@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('url')->nullable();
+            $table->string('type')->default(0);
             $table->longText('descriptions')->nullable();
             $table->string('technology')->nullable();
             $table->timestamps();

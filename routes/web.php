@@ -46,6 +46,7 @@ Route::get('delete-qualifications/{id?}', [App\Http\Controllers\HomeController::
 
 Route::get('/multi-project-uploads', [App\Http\Controllers\HomeController::class, 'uploadProjectForm'])->name('multi-project-uploads');
 Route::post('/multi-project-uploads', [App\Http\Controllers\HomeController::class, 'uploadProjectSubmit'])->name('multi-project-uploads');
+Route::get('/multi-project-uploads-json', [App\Http\Controllers\HomeController::class, 'uploadProjectJson'])->name('multi-project-uploads');
 Route::get('/delete-project/{id?}', [App\Http\Controllers\HomeController::class, 'deleteProject'])->name('delete-project');
 
 

@@ -176,15 +176,15 @@
                         <div class="v-align">
                             <h2>{{ucfirst(@$user->name)}}</h2>
                             <div id="rotate" class="text-rotate">
-                                <div style="display: none;">
+                                <div style="display: block;">
                                     <p class="home-page-description">Full Stack Developer</p>
                                 </div>
-                                <div style="display: block;">
+                                {{--<div style="display: block;">
                                     <p class="home-page-description">Web Developer</p>
                                 </div>
                                 <div style="display: block;">
                                     <p class="home-page-description">Mobile Developer</p>
-                                </div>
+                                </div>--}}
                             </div>
 
                             <div style="display: none"  class="block end" style="text-align: center">
@@ -219,14 +219,14 @@
                             <div class="block-title">
                                 <h3>Recommendations</h3>
                             </div>
-                            <div class="testimonials owl-carousel owl-loaded owl-drag">
+                            <div class="testimonials owl-carousel owl-loaded owl-drag slideshow-container">
                                 <!-- Testimonial 2 -->
 
 
-                                @if(!empty($recommendations))
+                                @if(!$recommendations->isEmpty())
 
                                     @forelse($recommendations as $r)
-                                        <div class="testimonial-item">
+                                        <div class="testimonial-item mySlides">
                                             <!-- Testimonial Content -->
                                             <div class="testimonial-content">
                                                 <div class="testimonial-text">
@@ -259,9 +259,15 @@
                                         @empty
                                             <p>Not Found</p>
                                     @endforelse
+                                         <div style="margin-top:5px;float: right;">
+                                             <a class="prev" onclick="plusSlides(-1)" style="cursor: pointer;">&#10094;</a>
+                                             <a class="next" onclick="plusSlides(1)" style="cursor: pointer;">&#10095;</a>
+                                         </div>
 
-
+                                @else
+                                    <p>Not Found</p>
                                 @endif
+
 
 
                             </div>
@@ -500,6 +506,14 @@
                                 <h3>Front-End</h3>
                             </div>
                             <div class="skills-info">
+                                <h4>Angular</h4>
+                                <div class="skill-container">
+                                    <div class="skill-percentage skill-1"></div>
+                                </div>
+                                <h4>VueJs/Vuex</h4>
+                                <div class="skill-container">
+                                    <div class="skill-percentage skill-1"></div>
+                                </div>
                                 <h4>ReactJs/Redux</h4>
                                 <div class="skill-container">
                                     <div class="skill-percentage skill-1"></div>
@@ -547,7 +561,7 @@
                                 <div class="skill-container">
                                     <div class="skill-percentage skill-1"></div>
                                 </div>
-                                <h4>Magento</h4>
+                                <h4>Shopify</h4>
                                 <div class="skill-container">
                                     <div class="skill-percentage skill-2"></div>
                                 </div>
@@ -564,6 +578,10 @@
                             </div>
                             <div class="skills-info">
                                 <h4>AWS Services</h4>
+                                <div class="skill-container">
+                                    <div class="skill-percentage skill-1"></div>
+                                </div>
+                                <h4>Docker</h4>
                                 <div class="skill-container">
                                     <div class="skill-percentage skill-1"></div>
                                 </div>
@@ -621,44 +639,27 @@
                     <div class="portfolio-content">
 
                         <!-- Portfolio filter -->
-                        <ul id="portfolio_filters" class="portfolio-filters" style="display: none">
-                            <li class="active">
-                                <a class="filter btn btn-sm btn-link active" data-group="all">All</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="nodejs">Nodejs</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="reactjs">Reactjs</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="php">PHP</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="python">Python</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="codeigniter">Codeigniter</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="laravel">Laravel</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="yii">Yii</a>
-                            </li>
+                        <ul id="portfolio_filters" class="portfolio-filters" style="">
 
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="wordpress">Wordpress</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="magento">Magento</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="opencart">OpenCart</a>
-                            </li>
-                            <li>
-                                <a class="filter btn btn-sm btn-link" data-group="opensource">Open Source</a>
-                            </li>
+                            @php
+                                $technology = workAtTechnology();
+                            @endphp
+
+                        @foreach($technology as $key => $t)
+                                @if($items[0]->type == $key)
+                                    @php
+                                        $active = 'active';
+                                    @endphp
+                                @else
+                                    @php
+                                        $active = '';
+                                    @endphp
+                                @endif
+                                <li class="{!! $active !!}">
+                                    <a class="filter btn btn-sm btn-link change_project {!! $active !!}" id="{!! $key !!}" data-group="{!! $key !!}">{!! $t !!}</a>
+                                </li>
+                            @endforeach
+
                         </ul>
                         <!-- End of Portfolio filter -->
 
@@ -666,6 +667,7 @@
 
                         <div class="container-fluid">
                             <div class="row">
+                                <div class="projects_data">
                             @if(!empty($items))
                                 @forelse($items as $its)
 
@@ -697,6 +699,7 @@
 
                             @endif
                             </div>
+                        </div>
                         </div>
 
                         <!-- /Portfolio Grid -->
@@ -905,6 +908,53 @@
         confirm("Are You Sure!");
     }
 
+    $('.change_project').click(function (e) {
+        e.preventDefault();
+       alert(e.target.id);
+
+        jQuery.ajax({
+            url: '{{url('multi-project-uploads-json')}}',
+            type: "get",
+            data: {type_id : e.target.id},
+             "_token": "{{ csrf_token() }}",
+            success: function (response) {
+
+                if (response) {
+
+                    var optionsHtml = '';
+                    var subChild = '{{url('project-details-load/')}}';
+
+                    $.each(response, function (key, val) {
+
+                        var filePath = '',
+                            filePath = val.item_details[0].filename,
+                            filePath = filePath.split('/storage/'),
+                            urlImage = '{!! url('storage/') !!}';
+                            filePath = urlImage+'/'+filePath[1];
+
+                        optionsHtml += '<a  href="' + subChild + val.id + '">';
+                        optionsHtml += '<div class="image-block col-sm-4" style="background: '+ filePath+' no-repeat center top;background-size:cover;">';
+                        optionsHtml += '<p>' + val.name + '</p>';
+                        optionsHtml += '<small style="text-decoration: none;color: #9c9c9c;">' + val.descriptions + '</small>';
+                        optionsHtml += '</div>';
+                        optionsHtml += '</a>';
+
+                    });
+                    console.log(optionsHtml);
+                    $('.projects_data').html(optionsHtml);
+                }else{
+                    $('.projects_data').html('Not Found...');
+                }
+
+
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                console.log("ERROR:" + xhr.responseText + " - " + thrownError);
+            }
+        });
+
+
+
+    });
 </script>
 
 
@@ -923,11 +973,41 @@
 <script src="{{ asset('frontend/js/portfolio.js')}}"></script>
 
 <script>
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        // var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+        /* for (i = 0; i < dots.length; i++) {
+             dots[i].className = dots[i].className.replace(" active", "");
+         }*/
+        slides[slideIndex-1].style.display = "block";
+        // dots[slideIndex-1].className += " active";
+    }
+
+
    /* a('.subpages .ajax-page-load').click(function() {
         alert();
         var url_p = 'project-details-load/'+a(this).attr('href');
 
         return window.location.hash = 'portfolio/' + url_p.substr(0, url_p.length - 5), !1
     })*/
+
 </script>
 

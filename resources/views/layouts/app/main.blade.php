@@ -43,8 +43,8 @@
        <!-- begin mobile sidebar expand / collapse button -->
 
        <div class="navbar-header">
-           <span class="navbar-brand">
-           <a href=""><img class="icyber-logo img-thumbnail"  src="{!! getUserAvatar() !!}" > Welcome to {{ucfirst(@$name)}}</a>
+           <span class="navbar-brand" style="width:520px">
+           <a href=""><img class="icyber-logo img-thumbnail"  src="{!! getUserAvatar() !!}" >Welcome to {{ucfirst(@$name)}}</a>
 
              </span>
               <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
