@@ -910,8 +910,7 @@
 
     $('.change_project').click(function (e) {
         e.preventDefault();
-       alert(e.target.id);
-
+   
         jQuery.ajax({
             url: '{{url('multi-project-uploads-json')}}',
             type: "get",
@@ -929,8 +928,7 @@
                         var filePath = '',
                             filePath = val.item_details[0].filename,
                             filePath = filePath.split('/storage/'),
-                            urlImage = '{!! url('storage/') !!}';
-                            filePath = urlImage+'/'+filePath[1];
+                            filePath = '{!! url('storage/') !!}'+'/'+filePath[1];
 
                         optionsHtml += '<a  href="' + subChild + val.id + '">';
                         optionsHtml += '<div class="image-block col-sm-4" style="background: '+ filePath+' no-repeat center top;background-size:cover;">';
