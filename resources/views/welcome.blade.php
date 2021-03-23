@@ -910,7 +910,9 @@
 
     $('.change_project').click(function (e) {
         e.preventDefault();
-   
+        $('.portfolio-filters').children("li").removeClass("active");
+        $(this).parent("li").addClass("active");
+
         jQuery.ajax({
             url: '{{url('multi-project-uploads-json')}}',
             type: "get",
@@ -928,10 +930,11 @@
                         var filePath = '',
                             filePath = val.item_details[0].filename,
                             filePath = filePath.split('/storage/'),
-                            filePath = '{!! url('storage/') !!}'+'/'+filePath[1];
+                         //   filePath = '{!! url('storage/') !!}'+'/'+filePath[1];
+                            filePath = 'storage/'+filePath[1];
 
-                        optionsHtml += '<a  href="' + subChild + val.id + '">';
-                        optionsHtml += '<div class="image-block col-sm-4" style="background: '+ filePath+' no-repeat center top;background-size:cover;">';
+                        optionsHtml += '<a  href="' + subChild +'/'+ val.id + '">';
+                        optionsHtml += '<div class="image-block col-sm-4" style="background: url('+filePath+') no-repeat center top;background-size:cover;">';
                         optionsHtml += '<p>' + val.name + '</p>';
                         optionsHtml += '<small style="text-decoration: none;color: #9c9c9c;">' + val.descriptions + '</small>';
                         optionsHtml += '</div>';
