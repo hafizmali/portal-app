@@ -812,7 +812,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <textarea id="form_message" name="message" class="form-control" placeholder="Message for me" rows="4" required="required" data-error="Please, leave me a message."></textarea>
+                                        <textarea id="form_message" name="message" maxlength="100" class="form-control" placeholder="Message for me, only 100 word allowed" rows="4" required="required" data-error="Please, leave me a message."></textarea>
                                         <div class="form-control-border"></div>
                                         <i class="form-control-icon fa fa-comment"></i>
                                         <div class="help-block with-errors"></div>

@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => [
-            'getMainPage','contactUS','projectDetails'
+            'getMainPage','contactUS','projectDetails','uploadProjectJson'
         ]]);
 
     }
@@ -672,7 +672,7 @@ class HomeController extends Controller
 
             Mail::send('mail_template',$params, function ($message) use ($request) {
 
-                $message->to($request->email);
+                $message->to('Digitlogix1@gmail.com');
                 $message->from('info@digitlogix.com');
                 $message->subject('contact us');
             });
