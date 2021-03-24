@@ -646,7 +646,7 @@
                             @endphp
 
                         @foreach($technology as $key => $t)
-                                @if($items[0]->type == $key)
+                                @if(isset($items[0]->type) && $items[0]->type == $key)
                                     @php
                                         $active = 'active';
                                     @endphp
