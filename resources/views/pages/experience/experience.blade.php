@@ -107,7 +107,7 @@
 
                     <label class="control-label col-md-4">Start Date *</label>
                     <div class="col-md-8">
-                        <input type="date" name="ex_start_date" class="form-control" id="ex_start_date"
+                        <input type="text" name="ex_start_date" class="form-control date_picker" id="ex_start_date"
                                placeholder="Enter Start Date" value="" required/>
 
                     </div>
@@ -117,7 +117,7 @@
 
                     <label class="control-label col-md-4">End Date *</label>
                     <div class="col-md-8">
-                        <input type="date" name="ex_end_date" class="form-control group1" id="ex_end_date"
+                        <input type="text" name="ex_end_date" class="form-control group1 date_picker" id="ex_end_date"
                                placeholder="Enter End Date" value="" required/>
 
                         <input type="checkbox" name="current" class="" id="current1"> Enabled End Date

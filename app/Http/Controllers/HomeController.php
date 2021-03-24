@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -658,6 +659,29 @@ class HomeController extends Controller
             'form_email' => $request->email,
             'form_message' => $request->message
         ]);
+        try {
+            $params[ 'from' ] = 'info@digitlogix.com';
+            $params[ 'data' ]  = [
+                'main'    => 'DigitLogix',
+                'title'   => $request->name,
+                'body'    => $request->message,
+                'year'    => Carbon::now()->format('Y'),
+                'website' => 'http://digitlogix.com/',
+            ];
+
+
+            Mail::send('mail_template',$params, function ($message) use ($request) {
+
+                $message->to($request->email);
+                $message->from('info@digitlogix.com');
+                $message->subject('contact us');
+            });
+        } catch (\Exception $e) {
+
+            echo '<pre>';
+            dd($e->getMessage());
+            die;
+        }
 
         return true;
     }

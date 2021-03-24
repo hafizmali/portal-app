@@ -123,7 +123,7 @@
 
                             <label class="control-label col-md-4">Start Date *</label>
                             <div class="col-md-8">
-                                <input type="date" name="start_date" class="form-control" id="start_date"
+                                <input type="text" name="start_date" class="form-control date_picker" id="start_date"
                                        placeholder="Enter Start Date" value="" required/>
 
                             </div>
@@ -133,7 +133,7 @@
 
                             <label class="control-label col-md-4">End Date *</label>
                             <div class="col-md-8">
-                                <input type="date" name="end_date" class="form-control" id="end_date"
+                                <input type="text" name="end_date" class="form-control date_picker" id="end_date"
                                        placeholder="Enter End Date" value="" required/>
 
                             </div>
@@ -194,6 +194,17 @@
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/jquery.tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         $(document).ready(function() {
+
+            $(".date_picker").datepicker({
+                dateFormat: 'yy-mm-dd',
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                autoclose: true,
+                changeMonth: true,
+                changeYear: true,
+                orientation: "bottom"
+                //gotoCurrent: true,
+            });
             $('.data-table').DataTable( {
                 dom: 'Bfrtip',
                 buttons: [
