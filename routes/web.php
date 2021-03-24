@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 
     return view('welcome');
 });*/
+Route::get('/storage_link', function () {
+    Artisan::call('storage:link');
+});
 Route::get('/', [App\Http\Controllers\HomeController::class, 'getMainPage'])->name('/');
 Route::get('contact-us', [App\Http\Controllers\HomeController::class, 'contactUS'])->name('contact-us');
 Auth::routes();
