@@ -978,7 +978,7 @@
 
        setInterval(function (){
            plusSlides(1);
-       },3000)
+       },6000)
 
         var slideIndex = 1;
         showSlides(slideIndex);

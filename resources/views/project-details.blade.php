@@ -178,7 +178,7 @@
 
                             @endphp
                             <div class="mySlides">
-                                <img src="{{asset('storage/'.$path_n)}}" style="width: 653px; margin-right: 10px;">
+                                <img src="{{asset('storage/'.$path_n)}}" style="width: 653px;height: 500px; margin-right: 10px;">
                                 <div class="text"></div>
                             </div>
 
