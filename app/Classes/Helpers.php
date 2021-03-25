@@ -58,7 +58,7 @@ function getQualifications() {
 }
 function getProjects(){
     $items = [];
-    $items = Item::with('itemDetails')->get();
+    $items = Item::where('type' ,0)->with('itemDetails')->get();
     return $items;
 }
 
